@@ -78,6 +78,10 @@ public class HttpConnector implements WsConnector {
       // the Basic credentials consider an empty password.
       okHttpClientBuilder.setCredentials(Credentials.basic(builder.login, nullToEmpty(builder.password), UTF_8));
     }
+    if (!System.getProperty("http.basicAuthUser", "").isEmpty()) {
+      okHttpClientBuilder.setCredentials(Credentials.basic(
+        System.getProperty("http.basicAuthUser"), System.getProperty("http.basicAuthPassword")));
+    }
     this.systemPassCode = builder.systemPassCode;
     okHttpClientBuilder.setProxy(builder.proxy);
     okHttpClientBuilder.setProxyLogin(builder.proxyLogin);
