@@ -40,4 +40,15 @@ publishing {
       }
     }
   }
+  repositories {
+    maven {
+     // publish: gradle publish -PnexusUsername=XXX -PnexusPassword=XXX -Prelease=true   
+     name 'gea-nexus'
+     url 'https://gea.codecentric.de/nexus/content/repositories/releases'
+     credentials {
+       username nexusUsername
+       password nexusPassword
+     }
+   }
+  }
 }
